@@ -1,7 +1,6 @@
 package com.medicine.medicine.dbo;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,7 +11,7 @@ import javax.validation.constraints.NotNull;
 public class MedicineDbo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     @NotNull
     private String medicine;

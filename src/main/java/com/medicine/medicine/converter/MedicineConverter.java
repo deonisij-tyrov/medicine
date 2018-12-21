@@ -3,7 +3,10 @@ package com.medicine.medicine.converter;
 import com.medicine.medicine.dbo.MedicineDbo;
 import com.medicine.medicine.dto.MedicineDto;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MedicineConverter implements DtoDboConverter<MedicineDto, MedicineDbo> {
 
     @Override
