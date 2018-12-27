@@ -1,6 +1,6 @@
 package com.medicine.medicine.service;
 
-import com.medicine.medicine.converter.MedicineConverter;
+import com.medicine.medicine.converter.impl.MedicineConverter;
 import com.medicine.medicine.repository.MedicineRepository;
 import com.medicine.medicine.dto.MedicineDto;
 import org.springframework.beans.factory.annotation.Autowired;

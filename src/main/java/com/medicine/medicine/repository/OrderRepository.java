@@ -1,9 +1,9 @@
 package com.medicine.medicine.repository;
 
-import com.medicine.medicine.entity.MedicineEntity;
+import com.medicine.medicine.entity.OrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MedicineRepository extends JpaRepository<MedicineEntity, Long> {
+public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 }

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/medicine")
 public class MedicineController {
     private final MedicineService medicineService;
 
@@ -23,8 +22,13 @@ public class MedicineController {
         return "Created";
     }
 
-    @GetMapping("/list")
+    @GetMapping(value = "/list")
     public List<MedicineDto> getAllMedicine() {
         return medicineService.getMedicineList();
+    }
+
+    @GetMapping("/test")
+    public String getTest () {
+        return "test";
     }
 }
