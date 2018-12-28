@@ -1,5 +1,6 @@
 package com.medicine.medicine.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 
@@ -16,17 +17,23 @@ public class MedicineEntity {
     private long id;
 
     @NotNull
+    @Column(name = "MEDICINE")
     private String medicine;
 
     @NotNull
+    @Column(name = "PRICE")
     private int price;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
     @JoinTable(
             name = "order_medicine",
-            joinColumns = {@JoinColumn(name = "ID_ORDER")},
-            inverseJoinColumns = {@JoinColumn(name = "ID_MEDICINE")}
+            joinColumns = {@JoinColumn(name = "MEDICINE_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "ORDER_ID")}
     )
-    private List<MedicineEntity> orderEntityList;
+    @JsonIgnore
+    private List<OrderEntity> orderEntityList;
 
 }

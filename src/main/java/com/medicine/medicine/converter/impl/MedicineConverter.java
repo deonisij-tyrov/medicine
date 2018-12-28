@@ -13,9 +13,9 @@ import java.util.List;
 public class MedicineConverter implements DtoDboConverter<MedicineDto, MedicineEntity> {
 
     @Override
-    public MedicineDto convertToDto(MedicineEntity dbo) {
+    public MedicineDto convertToDto(MedicineEntity entity) {
         final MedicineDto medicineDto = new MedicineDto();
-        BeanUtils.copyProperties(dbo, medicineDto);
+        BeanUtils.copyProperties(entity, medicineDto);
         return medicineDto;
     }
 
@@ -24,17 +24,5 @@ public class MedicineConverter implements DtoDboConverter<MedicineDto, MedicineE
         final MedicineEntity medicineEntity = new MedicineEntity();
         BeanUtils.copyProperties(dto, medicineEntity);
         return medicineEntity;
-    }
-
-    public List<MedicineDto> convertToDto(final List<MedicineEntity> dboList) {
-        final List<MedicineDto> result = new ArrayList<>();
-        dboList.forEach((dbo) -> { result.add(convertToDto(dbo)); });
-        return result;
-    }
-
-    public List<MedicineEntity> convertToDbo(final List<MedicineDto> dtoList) {
-        final List<MedicineEntity> result = new ArrayList<>();
-        dtoList.forEach((dto) -> { result.add(convertToDbo(dto)); });
-        return result;
     }
 }

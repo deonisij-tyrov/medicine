@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="root" id="1.0">
+        <createTable tableName="medicine">
+            <column name="ID" type="bigint(20)" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="MEDICINE" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRICE" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="root" id="1.1">
+        <createTable tableName="order">
+            <column name="ID" type="bigint(20)" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ORDER" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="root" id="1.2">
+        <createTable tableName="order_medicine">
+            <column name="ORDER_ID" type="bigint(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MEDICINE_ID" type="bigint(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.3" author="root">
+        <createTable tableName="user">
+            <column name="ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="FIRST_NAME" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_NAME" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOGIN" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENABLED" type="boolean" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+    <!--<changeSet id="add_user_info" author="root">-->
+        <!--<sql>-->
+            <!--insert into user(first_name, last_name, patronymic, passport_number, email, login, password) values-->
+            <!--("James", "Alan", "Hetfield", "HC1235685", "jamesalan@mail.ru", "james_alan", "jalan"),-->
+            <!--("Vladzislav", "Jum", "Egorovich", "HB3567812", "vladislavjum@mail.ru", "vladislav_jum", "vjum")-->
+        <!--</sql>-->
+    <!--</changeSet>-->
+</databaseChangeLog>

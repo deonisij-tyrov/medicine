@@ -3,6 +3,8 @@ package com.medicine.medicine.controller;
 import com.medicine.medicine.dto.MedicineDto;
 import com.medicine.medicine.service.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,9 +19,9 @@ public class MedicineController {
     }
 
     @PostMapping("/create")
-    public String createMedicine(@RequestBody final MedicineDto medicineDto) {
+    public ResponseEntity createMedicine(@RequestBody final MedicineDto medicineDto) {
         medicineService.creatMedicine(medicineDto);
-        return "Created";
+        return new ResponseEntity<>("Medicine created", HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/list")
@@ -27,8 +29,8 @@ public class MedicineController {
         return medicineService.getMedicineList();
     }
 
-    @GetMapping("/test")
-    public String getTest () {
-        return "test";
-    }
+//    @GetMapping("/test")
+//    public String getTest () {
+//        return "test";
+//    }
 }

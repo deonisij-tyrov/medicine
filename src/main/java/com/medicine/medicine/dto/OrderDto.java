@@ -9,5 +9,6 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderDto {
     private long id;
+    private String order;
     private List<MedicineDto> medicineDtoList;
 }
