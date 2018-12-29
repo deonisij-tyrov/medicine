@@ -24,15 +24,7 @@ public class MedicineEntity {
     @Column(name = "PRICE")
     private int price;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(
-            name = "order_medicine",
-            joinColumns = {@JoinColumn(name = "MEDICINE_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "ORDER_ID")}
-    )
+    @ManyToMany(mappedBy = "medicineEntityList")
     @JsonIgnore
     private List<OrderEntity> orderEntityList;
 

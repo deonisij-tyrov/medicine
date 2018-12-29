@@ -32,7 +32,7 @@ public class OrderEntity {
     private List<MedicineEntity> medicineEntityList;
 
     @ManyToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "orderEntityList")
     private UserEntity user;
 
 }
