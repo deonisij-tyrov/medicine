@@ -24,8 +24,8 @@ public class MockData {
 
     public static List<MedicineDto> listDtoMedicine() {
         final List<MedicineDto> medicineDtoList = new ArrayList<>();
-        medicineDtoList.add(new MedicineDto(1, "test", 1));
-        medicineDtoList.add(new MedicineDto(2, "test2",0));
+//        medicineDtoList.add(new MedicineDto(1, "test", 1));
+//        medicineDtoList.add(new MedicineDto(2, "test2",0));
         return medicineDtoList;
     }
 }

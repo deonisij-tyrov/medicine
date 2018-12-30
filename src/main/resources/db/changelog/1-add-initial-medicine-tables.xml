@@ -2,89 +2,104 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-    <changeSet author="root" id="1.0">
+    <changeSet author="root" id="medicine_table">
         <createTable tableName="medicine">
-            <column name="ID" type="bigint(20)" autoIncrement="true">
+            <column name="id" type="bigint(20)" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="MEDICINE" type="VARCHAR(64)">
+            <column name="medicine" type="varchar(64)">
                 <constraints nullable="false"/>
             </column>
-            <column name="PRICE" type="INT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet id="1.1" author="root">
-        <sql>
-    INSERT INTO medicine(MEDICINE, PRICE) VALUES ("test", 3);
-        </sql>
-    </changeSet>
-
-    <changeSet author="root" id="2.0">
-        <createTable tableName="order_medicine">
-            <column name="ORDER_ID" type="bigint(20)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="MEDICINE_ID" type="bigint(20)">
+            <column name="price" type="int">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="2.1" author="root">
+    <changeSet id="medicine_table_value" author="root">
         <sql>
-            INSERT INTO order_medicine (MEDICINE_ID, ORDER_ID) VALUES (1,1);
+    INSERT INTO medicine(medicine, price) VALUES ("test", 3);
         </sql>
     </changeSet>
 
-    <changeSet id="3.0" author="root">
+    <changeSet id="user_table" author="root">
         <createTable tableName="user">
-            <column name="ID" type="int" autoIncrement="true">
+            <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="FIRST_NAME" type="varchar(50)">
+            <column name="first_name" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="LAST_NAME" type="varchar(50)">
+            <column name="last_name" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="EMAIL" type="varchar(255)">
+            <column name="email" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="LOGIN" type="varchar(50)">
+            <column name="login" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="PASSWORD" type="varchar(255)">
+            <column name="password" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ENABLED" type="boolean" defaultValueBoolean="true"/>
+            <column name="enable" type="boolean" defaultValueBoolean="true"/>
         </createTable>
     </changeSet>
-    <changeSet id="3.1" author="root">
+    <changeSet id="user_table_value" author="root">
         <sql>
-            INSERT INTO user (FIRST_NAME, LAST_NAME, EMAIL, LOGIN, PASSWORD) VALUES ("den", "sedun", "dens@com", "den", "1234")
+            INSERT INTO user (id, first_name, last_name, email, login, password) VALUES (1, "den", "sedun", "dens@com", "den", "1234")
         </sql>
     </changeSet>
 
-    <changeSet author="root" id="4.0">
-        <createTable tableName="order">
-            <column name="ID" type="bigint(20)" autoIncrement="true">
+    <changeSet author="root" id="order_table">
+        <createTable tableName="orders">
+            <column name="id" type="bigint(20)" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="ORDER" type="VARCHAR(64)">
+            <column name="orders" type="VARCHAR(64)">
                 <constraints nullable="false"/>
             </column>
-            <column name="user" type="int">
+            <column name="user_id" type="int">
                 <constraints
                         referencedTableName="user"
-                        referencedColumnNames="ID"
-                        foreignKeyName="user2_fk_user_id"/>
+                        referencedColumnNames="id"
+                        foreignKeyName="user_fk_user_id"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="4.1" author="root">
+    <changeSet id="order_table_value" author="root">
     <sql>
-    INSERT INTO `order`(ID,`ORDER`, user) VALUES (2,"test_order", 1);
+    INSERT INTO `orders`(id,`orders`, user_id) VALUES (1,"test_order", 1);
     </sql>
+    </changeSet>
+
+    <changeSet author="root" id="order_medicine_table">
+        <createTable tableName="order_medicine">
+
+            <column name="order_id" type="BIGINT(20)">
+                <constraints primaryKeyName="PK_order_medicine_order_id" primaryKey="true"
+                             foreignKeyName="FK_order_medicine_order_id" references="orders(id)"/>
+            </column>
+            <column name="medicine_id" type="BIGINT(20)">
+                <constraints primaryKeyName="PK_order_medicine_medicine_id" primaryKey="true"
+                             foreignKeyName="FK_order_medicine_mediciner_id" references="medicine(id)"/>
+            </column>
+            <!--<column name="order_id" type="bigint(20)">-->
+                <!--<constraints-->
+                        <!--referencedTableName="orders"-->
+                        <!--referencedColumnNames="id"-->
+                        <!--foreignKeyName="order_fk_order_id"/>-->
+            <!--</column>-->
+            <!--<column name="medicine_id" type="bigint(20)">-->
+                <!--<constraints-->
+                        <!--referencedTableName="medicine"-->
+                        <!--referencedColumnNames="id"-->
+                        <!--foreignKeyName="medicine_fk_medicine_id"/>-->
+            <!--</column>-->
+        </createTable>
+    </changeSet>
+    <changeSet id="order_medicine_value" author="root">
+        <sql>
+            INSERT INTO order_medicine (order_id, medicine_id) VALUES (1,1);
+        </sql>
     </changeSet>
 </databaseChangeLog>

@@ -3,36 +3,39 @@ package com.medicine.medicine.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
+@EqualsAndHashCode
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull
-    @Column(name = "ORDER")
+    @Column(name = "orders")
     private String order;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "order_medicine",
-            joinColumns = @JoinColumn(name = "ORDER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "MEDICINE_ID")
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "medicine_id")
     )
     @JsonIgnore
-    private List<MedicineEntity> medicineEntityList;
+    @EqualsAndHashCode.Exclude
+    private Set<MedicineEntity> medicineEntitySet = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "orderEntityList")
+    @JsonIgnore
+    @EqualsAndHashCode.Exclude
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
 }

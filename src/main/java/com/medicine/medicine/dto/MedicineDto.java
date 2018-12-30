@@ -3,16 +3,16 @@ package com.medicine.medicine.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Data
 @NoArgsConstructor
 public class MedicineDto {
     private long id;
     private String medicine;
     private int price;
-
-    public MedicineDto(long id, String medicine, int price) {
-        this.id = id;
-        this.medicine = medicine;
-        this.price = price;
-    }
+//    private Set<OrderDto> orderDtoSet = new HashSet<>();
 }

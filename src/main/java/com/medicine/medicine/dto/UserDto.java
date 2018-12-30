@@ -1,10 +1,10 @@
 package com.medicine.medicine.dto;
 
-import com.medicine.medicine.entity.OrderEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -16,5 +16,5 @@ public class UserDto {
     private String login;
     private String password;
     private Boolean enabled;
-    private List<OrderEntity> orderEntityList;
+    private Set<OrderDto> orderEntitySet = new HashSet<>();
 }
