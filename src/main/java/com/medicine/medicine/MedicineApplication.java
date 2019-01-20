@@ -1,6 +1,5 @@
 package com.medicine.medicine;
 
-import com.medicine.medicine.entity.UserEntity;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

@@ -10,11 +10,11 @@ import java.util.Set;
 @NoArgsConstructor
 public class UserDto {
     private long id;
-    private String firstName;
-    private String lastName;
+//    private String firstName;
+//    private String lastName;
     private String email;
     private String login;
     private String password;
-    private Boolean enabled;
+//    private Boolean enabled;
     private Set<OrderDto> orderEntitySet = new HashSet<>();
 }
