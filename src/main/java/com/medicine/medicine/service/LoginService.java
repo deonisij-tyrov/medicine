@@ -16,12 +16,12 @@ public class LoginService {
     UserConverter userConverter;
 
     public ResponseEntity<Response<UserDto>> signUp(UserDto user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        if (userRepository.findByLogin(user.getLogin()) == null) {
-            UserEntity dbo = userRepository.save(userConverter.convertToDbo(user));
-            return ResponseEntity.ok(Response.success(userConverter.convertToDto(dbo)));
-        } else {
-            return new ResponseEntity(Response.error("A user with this name already exists"), HttpStatus.BAD_REQUEST);
-        }
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        if (userRepository.findByLogin(user.getLogin()) == null) {
+//            UserEntity dbo = userRepository.save(userConverter.convertToDbo(user));
+//            return ResponseEntity.ok(Response.success(userConverter.convertToDto(dbo)));
+//        } else {
+//            return new ResponseEntity(Response.error("A user with this name already exists"), HttpStatus.BAD_REQUEST);
+//        }
     }
 }
